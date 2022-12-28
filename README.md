@@ -1,7 +1,16 @@
 # LearningCompilers
 Documenting my progress learning and potentially creating a compiler
 
-## Lexical Analyzer Phase
+## (https://github.com/Shivar-J/LearningCompilers/tree/LexicalAnalyzer)[Lexical Analyzer] Stage
+Tokenizes text from a file based on set token types and reserved words. Currently the amount of types are limited but I hope to increase the amount of reserved words and types allowed in the future.
+
+## Example Testcase
+```
+if(2 + 2 - 1)
+else(3 - 2 + 1)
+```
+
+#### Explanation of Example Testcase
 
 ### Code Snippet
 ```cpp
