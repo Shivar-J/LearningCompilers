@@ -128,13 +128,12 @@ int main() {
     
     std::string path;
     std::cin >> path;
-    //"C:/Users/sbshi/source/repos/CompilerDesign/CompilerDesign/file.txt"
     std::ifstream file(path);
     if(file.fail()) {
         std::cout << "Failed to open file!" << std::endl;
         return 0;
     }
-    //ignore eof for multiple lines
+    //IMPLEMENT: ignore eof for multiple lines
     std::string input;
     while(std::getline(file, input)) {
         Lexer lexer(input);
