@@ -119,9 +119,10 @@ public:
 };
 int main() {
     //EXAMPLE EXPRESSIONS: if(2 + 2 - 1);
+    std::cout << "Lexical Analyzer" << "\nExample Expression: if(2 + 2 - 1)" << std::endl;
     #ifdef _WIN32
     system("explorer /select, C:\\");
-    std::cout << "Drag File to CMD: " << std::endl;
+    std::cout << "Drag File to CMD then press Enter: " << std::endl;
     #else
     std::cout << "Enter Path to File: " << std::endl;
     #endif
