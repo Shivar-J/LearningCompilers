@@ -21,6 +21,7 @@ enum TokenType {
     OPERATOR,
     STARTPARENTHESIS,
     ENDPARENTHESIS,
+    NEWLINE,
 };
 
 std::map<std::string, TokenType> reserved_words = {
@@ -35,6 +36,7 @@ std::map<std::string, TokenType> reserved_words = {
     {"/", DIV},
     {"(", STARTPARENTHESIS},
     {")", ENDPARENTHESIS},
+    {";", NEWLINE},
 };
 
 // Token class
@@ -100,7 +102,7 @@ public:
                 return Token(INTEGER, integer());
             }
 
-            if (isalpha(current_char) || current_char == '+' || current_char == '-' || current_char == '/' || current_char == '*' || current_char == '(' || current_char == ')') {
+            if (isalpha(current_char) || current_char == '+' || current_char == '-' || current_char == '/' || current_char == '*' || current_char == '(' || current_char == ')' || current_char == ';') {
                 word += current_char;
                 advance();
             }
