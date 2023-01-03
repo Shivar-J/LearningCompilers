@@ -1,7 +1,7 @@
 # LearningCompilers
 Documenting my progress learning and potentially creating a compiler
 
-## [Lexical Analyzer Stage](https://github.com/Shivar-J/LearningCompilers/tree/LexicalAnalyzer)
+## [Lexical Analysis Stage](https://github.com/Shivar-J/LearningCompilers/tree/LexicalAnalyzer)
 Tokenizes text from a file based on set token types and reserved words. Currently the amount of types are limited but I hope to increase the amount of reserved words and types allowed in the future.
 
 ## Example Testcase
@@ -26,3 +26,6 @@ public:
     Token(TokenType type, char value) : type(type), int_value(0), string_value(""), char_value(value) {}
 };
 ```
+
+## [Syntax Analysis Stage](https://github.com/Shivar-J/LearningCompilers/tree/SyntaxAnalysis)
+Parses the relevant tokens and performs operations based on that token type. Currently limited to the same types as in the "lexical analysis" stage.
