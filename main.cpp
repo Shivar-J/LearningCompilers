@@ -3,6 +3,9 @@
 #include <vector>
 #include <sstream>
 #include "lexer.h"
+#include "parser.h"
+
+extern std::map<std::string, TokenType> reserved_words;
 
 std::string readfile(std::string name) {
     std::ifstream file(name);
@@ -65,4 +68,5 @@ int main() {
             break;
         }
     }
+    Parser parser(tokens);
 }

@@ -4,7 +4,6 @@
 #include <map>
 #include <string>
 
-// Token types
 enum TokenType {
     INTEGER,
     PLUS,
@@ -24,20 +23,7 @@ enum TokenType {
     NEWLINE,
 };
 
-std::map<std::string, TokenType> reserved_words = {
-    {"if", IF},
-    {"else", ELSE},
-    {"while", WHILE},
-    {"for", FOR},
-    {"return", RETURN},
-    {"+", PLUS},
-    {"-", MINUS},
-    {"*", MUL},
-    {"/", DIV},
-    {"(", STARTPARENTHESIS},
-    {")", ENDPARENTHESIS},
-    {";", NEWLINE},
-};
+extern std::map<std::string, TokenType> reserved_words;
 
 // Token class
 class Token {
