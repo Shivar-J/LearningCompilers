@@ -10,9 +10,10 @@ if(2 + 2) * (4 / 2)
 ```
 
 #### Explanation of Example Testcase
+```
 Reserved Words within testcase: if, (, +, -, )
 2, 2, and 1 are identified as integers
-```
+
 Console prints:
 Type: 6, Value: if, Precedence: 0
 Type: 13, Value: (, Precedence: 0
@@ -27,13 +28,13 @@ Type: 4, Value: /, Precedence: 2
 Type: 0, Value: 2, Precedence: 0
 Type: 14, Value: ), Precedence: 0
 Type: 5, Value: End of File, Precedence: -1
-```
+
 Precedence is 0 for anything other than mathematical operators right now. Can be inproved by grouping curly bracket code(ie. runs code in curly brackets first).
 Both + and - have a precedence value of 1 because when following order of operations (BEDMAS/PEMDAS), addition and subtraction have the same priority.
 End of file has a precedence of -1 because it can't be 0 or greater than 1.
 Type values are assigned based on a enum class containing all currently valid types.
 In the future, I can improve this code by adding support for more types and a better precedence system.
-
+```
 
 ### Code Snippet
 ```cpp
