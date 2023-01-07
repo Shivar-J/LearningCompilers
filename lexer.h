@@ -3,6 +3,10 @@
 #pragma once
 #include <map>
 #include <string>
+#include <vector>
+#include <stack>
+#include <iostream>
+#include <queue>
 
 enum TokenType {
     INTEGER,
@@ -18,8 +22,8 @@ enum TokenType {
     RETURN,
     IDENTIFIER,
     OPERATOR,
-    STARTPARENTHESIS,
-    ENDPARENTHESIS,
+    LEFTPARENTHESIS,
+    RIGHTPARENTHESIS,
     NEWLINE,
 };
 
@@ -32,10 +36,11 @@ public:
     int int_value;
     std::string string_value;
     char char_value;
+    int precedence;
 
-    Token(TokenType type, int value) : type(type), int_value(value), string_value(""), char_value(' ') {}
-    Token(TokenType type, std::string value) : type(type), int_value(0), string_value(value), char_value(' ') {}
-    Token(TokenType type, char value) : type(type), int_value(0), string_value(""), char_value(value) {}
+    Token(TokenType type, int value, int precedenceValue) : type(type), int_value(value), string_value(""), char_value(' '), precedence(precedenceValue) {}
+    Token(TokenType type, std::string value, int precedenceValue) : type(type), int_value(0), string_value(value), char_value(' '), precedence(precedenceValue) {}
+    Token(TokenType type, char value, int precedenceValue) : type(type), int_value(0), string_value(""), char_value(value), precedence(precedenceValue) {}
 };
 
 // Lexer class
@@ -75,6 +80,18 @@ public:
         return std::stoi(result);
     }
 
+    int getPrecedence(std::string c) {
+        if (c == "*" || c == "/") {
+            return 2;
+        }
+        else if (c == "+" || c == "-") {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
+
     Token get_next_token() {
         std::string word;
         std::string EOF_Str = "End of File";
@@ -85,7 +102,7 @@ public:
             }
 
             if (isdigit(current_char)) {
-                return Token(INTEGER, integer());
+                return Token(INTEGER, integer(), 0);
             }
 
             if (isalpha(current_char) || current_char == '+' || current_char == '-' || current_char == '/' || current_char == '*' || current_char == '(' || current_char == ')' || current_char == ';') {
@@ -95,12 +112,12 @@ public:
 
             if (reserved_words.count(word) > 0) {
                 auto iter = reserved_words.find(word);
-                return Token(iter->second, iter->first);
+                return Token(iter->second, iter->first, getPrecedence(word));
             }
             //throw std::invalid_argument("Invalid character");
         }
 
-        return Token(EOFile, EOF_Str);
+        return Token(EOFile, EOF_Str, -1);
     }
 };
 

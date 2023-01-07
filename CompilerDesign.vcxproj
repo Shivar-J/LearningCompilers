@@ -130,12 +130,14 @@
     <Text Include="file.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="convert.cpp" />
     <ClCompile Include="globals.cpp" />
     <ClCompile Include="lexer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="parser.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="convert.h" />
     <ClInclude Include="lexer.h" />
     <ClInclude Include="parser.h" />
   </ItemGroup>
