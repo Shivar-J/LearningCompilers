@@ -3,19 +3,19 @@
 void Convert::compileLiteral(const char*& s)
 {
 	int v = 0;
-	while (*s >= '0' && *s <= '0') {
+	while (*s >= '0' && *s <= '9') {
 		v = v * 10 + *s++ - '0';
 	}
-	printf("    mov eax, %i\n", v);
+	fprintf(file ,"%p    mov eax, %i\n", (void*)&s, v);
 }
 
 void Convert::compileSymbol(const char*& s)
 {
-	printf("    mov eax, dword ptr ");
+	fprintf(file ,"%p    mov eax, dword ptr ", (void*)&s);
 	while ((*s >= 'a' && *s <= 'z') || (*s >= 'A' && *s <= 'Z') || (*s >= '0' && *s <= '9')) {
 		putchar(*s++);
 	}
-	printf("\n");
+	fprintf(file, "\n");
 }
 
 void Convert::compileTerm(const char*& s)
@@ -35,9 +35,6 @@ void Convert::compileTerm(const char*& s)
 		}
 		s++;
 	}
-	else {
-		std::cout << "Syntax Error!" << std::endl;
-	}
 }
 
 void Convert::compileMulDiv(const char*& s)
@@ -46,19 +43,19 @@ void Convert::compileMulDiv(const char*& s)
 	for (;;) {
 		if (*s == '*') {
 			s++;
-			printf("    push eax\n");
+			fprintf(file, "%p    push eax\n", (void*)&s);
 			compileTerm(s);
-			printf("    mov  ebx, eax\n");
-			printf("    pop  eax\n");
-			printf("    imul ebx\n");
+			fprintf(file, "%p    mov  ebx, eax\n", (void*)&s);
+			fprintf(file, "%p    pop  eax\n", (void*)&s);
+			fprintf(file, "%p    imul ebx\n", (void*)&s);
 		}
 		else if (*s == '/') {
 			s++;
-			printf("    push eax\n");
+			fprintf(file, "%p    push eax\n", (void*)&s);
 			compileTerm(s);
-			printf("    mov  ebx, eax\n");
-			printf("    pop  eax\n");
-			printf("    idiv ebx\n");
+			fprintf(file, "%p    mov  ebx, eax\n", (void*)&s);
+			fprintf(file, "%p    pop  eax\n", (void*)&s);
+			fprintf(file, "%p    idiv ebx\n", (void*)&s);
 		}
 		else {
 			break;
@@ -72,19 +69,19 @@ void Convert::compileAddSub(const char*& s)
 	for (;;) {
 		if (*s == '+') {
 			s++;
-			printf("    push eax\n");
+			fprintf(file, "%p    push eax\n", (void*)&s);
 			compileMulDiv(s);
-			printf("    mov  ebx, eax\n");
-			printf("    pop  eax\n");
-			printf("    add  eax, ebx\n");
+			fprintf(file, "%p    mov  ebx, eax\n", (void*)&s);
+			fprintf(file, "%p    pop  eax\n", (void*)&s);
+			fprintf(file, "%p    add  eax, ebx\n", (void*)&s);
 		}
 		else if (*s == '-') {
 			s++;
-			printf("    push eax\n");
+			fprintf(file, "%p    push eax\n", (void*)&s);
 			compileMulDiv(s);
-			printf("    mov  ebx, eax\n");
-			printf("    pop  eax\n");
-			printf("    sub  eax, ebx\n");
+			fprintf(file, "%p    mov  ebx, eax\n", (void*)&s);
+			fprintf(file, "%p    pop  eax\n", (void*)&s);
+			fprintf(file, "%p    sub  eax, ebx\n", (void*)&s);
 		}
 		else break;
 	}

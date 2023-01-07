@@ -7,6 +7,9 @@
 #include <stack>
 #include <iostream>
 #include <queue>
+#include <fstream>
+#include <sstream>
+#include <errno.h>
 
 enum TokenType {
     INTEGER,

@@ -16,6 +16,9 @@ public:
 	void compileTerm(const char*& s);
 	void compileMulDiv(const char*& s);
 	void compileAddSub(const char*& s);
+
+	FILE* file;
+	errno_t err = fopen_s(&file, "out.asm", "w+");
 };
 
 #endif

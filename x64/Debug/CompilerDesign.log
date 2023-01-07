@@ -1,2 +1,5 @@
-﻿  main.cpp
+﻿  convert.cpp
+  main.cpp
+  parser.cpp
+  Generating Code...
   CompilerDesign.vcxproj -> C:\Users\sbshi\source\repos\CompilerDesign\x64\Debug\CompilerDesign.exe
