@@ -112,7 +112,7 @@ std::deque<Token> AST::parse(const std::vector<Token>& tokens)
 	return output_queue;
 }
 ```
-The Shunting Yard algorithm is used to convert infix notation to postfix notation. In the code above I also handle parenthesis as I didn't handle them when I assigned a precedence value to each token in the first stage. The code uses a stack and a queue to hold operators and operands respectfully then merge them both at the end. The end results in a expression such as 4 2 + (4 + 2) *figure 2.1* or 2 2 + 4 2 / * *figure 2.2*. 
+The Shunting Yard algorithm is used to convert infix notation to postfix notation. In the code above I also handle parenthesis as I didn't handle them when I assigned a precedence value to each token in the first stage. The code uses a stack and a queue to hold operators and operands respectfully then merge them both at the end. The end results in a expression such as 4 2 + (4 + 2) (*figure 2.1*) or 2 2 + 4 2 / * (*figure 2.2*). 
 
 ```
 	+
