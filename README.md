@@ -148,3 +148,5 @@ for (;;) {
 	}
 }
 ```
+
+Currently the code generated is very inefficient and doesn't support anything but very limited math equations, but it produces a workable assembly code based on a given math equation.
