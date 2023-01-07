@@ -28,4 +28,7 @@ public:
 ```
 
 ## [Syntax Analysis Stage](https://github.com/Shivar-J/LearningCompilers/tree/SyntaxAnalysis)
-Parses the relevant tokens and performs operations based on that token type. Currently limited to the same types as in the "lexical analysis" stage.
+Parses the relevant tokens and performs operations based on that token type. Currently limited to the same types as in the "lexical analysis" stage. Uses the Shunting-Yard algorithm to convert tokens to postfix notation
+
+## [Code Generation Stage](https://github.com/Shivar-J/LearningCompilers/tree/CodeGeneration)
+Uses both tokens and postfix equation from previous stage to create intermediate assembly code.
