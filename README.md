@@ -54,7 +54,7 @@ public:
 ## [Syntax Analysis Stage](https://github.com/Shivar-J/LearningCompilers/tree/SyntaxAnalysis)
 Parses the relevant tokens and performs operations based on that token type. Currently limited to the same types as in the "lexical analysis" stage. Uses the Shunting-Yard algorithm to convert tokens to postfix notation
 
-Code Snippet (Shunting-Yard Algorithm)
+### Code Snippet (Shunting-Yard Algorithm)
 ```cpp
 std::deque<Token> AST::parse(const std::vector<Token>& tokens)
 {
@@ -112,7 +112,6 @@ std::deque<Token> AST::parse(const std::vector<Token>& tokens)
 	return output_queue;
 }
 ```
-
 The Shunting Yard algorithm is used to convert infix notation to postfix notation. In the code above I also handle parenthesis as I didn't handle them when I assigned a precedence value to each token in the first stage. The code uses a stack and a queue to hold operators and operands respectfully then merge them both at the end. The end results in a expression such as 4 2 + (figure 2.1). 
 
 ```
@@ -124,3 +123,28 @@ The Shunting Yard algorithm is used to convert infix notation to postfix notatio
 
 ## [Code Generation Stage](https://github.com/Shivar-J/LearningCompilers/tree/CodeGeneration)
 Uses both tokens and postfix equation from previous stage to create intermediate assembly code.
+
+### Code Snippet
+```cpp
+for (;;) {
+	if (*s == '*') {
+		s++;
+		fprintf(file, "%p    push eax\n", (void*)&s);
+		compileTerm(s);
+		fprintf(file, "%p    mov  ebx, eax\n", (void*)&s);
+		fprintf(file, "%p    pop  eax\n", (void*)&s);
+		fprintf(file, "%p    imul ebx\n", (void*)&s);
+	}
+	else if (*s == '/') {
+		s++;
+		fprintf(file, "%p    push eax\n", (void*)&s);
+		compileTerm(s);
+		fprintf(file, "%p    mov  ebx, eax\n", (void*)&s);
+		fprintf(file, "%p    pop  eax\n", (void*)&s);
+		fprintf(file, "%p    idiv ebx\n", (void*)&s);
+	}
+	else {
+		break;
+	}
+}
+```
