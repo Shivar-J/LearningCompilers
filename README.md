@@ -1,6 +1,8 @@
 # LearningCompilers
 Documenting my progress learning and potentially creating a compiler
 
+## [Link to current code branch](https://github.com/Shivar-J/LearningCompilers/tree/CodeGeneration)
+
 ## [Lexical Analysis Stage](https://github.com/Shivar-J/LearningCompilers/tree/LexicalAnalyzer)
 Tokenizes text from a file based on set token types and reserved words. Currently the amount of types are limited but I hope to increase the amount of reserved words and types allowed in the future.
 
